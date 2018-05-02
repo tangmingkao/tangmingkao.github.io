@@ -79,17 +79,19 @@
 
 
 
-<meta name="description" content="一切过往，皆为序曲">
+<meta name="description" content="在javascript中，类的所以实例对象都从同一个原型对象上继续属性。因此原型对象是类的核.  构造函数constructor构造函数是用于创建和初始化类中创建的一个对象的一种特殊方法。 12constructor([arguments])&amp;#123;...&amp;#125;; 在一个类中只能有一个名为constructor的特殊方法。一个类中出现多次构造函数方法会抛出一个SyntaxError错误">
 <meta property="og:type" content="article">
 <meta property="og:title" content="类和原型">
 <meta property="og:url" content="http://yoursite.com/2016/12/02/类和原型/index.html">
 <meta property="og:site_name" content="What&#39;s past is prologue">
-<meta property="og:description" content="一切过往，皆为序曲">
+<meta property="og:description" content="在javascript中，类的所以实例对象都从同一个原型对象上继续属性。因此原型对象是类的核.  构造函数constructor构造函数是用于创建和初始化类中创建的一个对象的一种特殊方法。 12constructor([arguments])&amp;#123;...&amp;#125;; 在一个类中只能有一个名为constructor的特殊方法。一个类中出现多次构造函数方法会抛出一个SyntaxError错误">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-02T08:07:52.770Z">
+<meta property="og:image" content="http://yoursite.com/2016/12/02/类和原型/捕获.PNG">
+<meta property="og:updated_time" content="2018-05-02T09:06:35.259Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="类和原型">
-<meta name="twitter:description" content="一切过往，皆为序曲">
+<meta name="twitter:description" content="在javascript中，类的所以实例对象都从同一个原型对象上继续属性。因此原型对象是类的核.  构造函数constructor构造函数是用于创建和初始化类中创建的一个对象的一种特殊方法。 12constructor([arguments])&amp;#123;...&amp;#125;; 在一个类中只能有一个名为constructor的特殊方法。一个类中出现多次构造函数方法会抛出一个SyntaxError错误">
+<meta name="twitter:image" content="http://yoursite.com/2016/12/02/类和原型/捕获.PNG">
 
 
 
@@ -323,7 +325,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  0
+                  527
                 </span>
               
 
@@ -348,7 +350,38 @@
       
 
       
-        
+        <blockquote>
+<p>在javascript中，类的所以实例对象都从同一个原型对象上继续属性。因此原型对象是类的核.</p>
+</blockquote>
+<h5 id="构造函数constructor"><a href="#构造函数constructor" class="headerlink" title="构造函数constructor"></a>构造函数constructor</h5><p>构造函数是用于创建和初始化类中创建的一个对象的一种特殊方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">constructor</span>([arguments])&#123;...&#125;;</span><br></pre></td></tr></table></figure>
+<p>在一个类中只能有一个名为constructor的特殊方法。一个类中出现多次构造函数方法会抛出一个SyntaxError错误。</p>
+<p>在一个构造方法中可以使用super关键字来调用一个父类的构造方法。</p>
+<p>如果没有显式制定构造方法，则会添加默认的construtor方法。</p>
+<p>使用constructor方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Square</span> <span class="keyword">extends</span> <span class="title">Polygon</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(length) &#123;</span><br><span class="line">        <span class="comment">// 在这里, 它调用了父类的构造函数, 并将父类的 lengths 提供给 Polygon 的"width"和"height"</span></span><br><span class="line">        <span class="keyword">super</span>(length, length);</span><br><span class="line">        <span class="comment">// 注意: 在派生类中, 必须先调用 super() 才能使用 "this"。</span></span><br><span class="line">        <span class="comment">// 忽略这个，将会导致一个引用错误。</span></span><br><span class="line">        <span class="keyword">this</span>.name = <span class="string">'Square'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    get area() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.height * <span class="keyword">this</span>.width;</span><br><span class="line">    &#125;</span><br><span class="line">    set area(value) &#123;</span><br><span class="line">        <span class="keyword">this</span>.area = value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对于基类，默认构造方法：</p>
+<blockquote>
+<p>constructor(){}</p>
+</blockquote>
+<p>对于派生类，默认构造方法是：</p>
+<blockquote>
+<p>constructor(…args){<br>     super(…args);<br>}</p>
+</blockquote>
+<h5 id="extends关键字"><a href="#extends关键字" class="headerlink" title="extends关键字"></a>extends关键字</h5><p>extends关键字用于类声明或者类表达式中，以创建一个类，该类是另一个类的子类。</p>
+<blockquote>
+<p>class ChildClass extends ParentClass {…}</p>
+</blockquote>
+<p>extends关键字用来创建一个普通类或者内建对象的子类。</p>
+<p>继承的.prototype必须是一个Object 或者 null。</p>
+<p>使用extends</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Square</span> <span class="keyword">extends</span> <span class="title">Polygon</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(length) &#123;</span><br><span class="line">    <span class="comment">// Here, it calls the parent class' constructor with lengths</span></span><br><span class="line">    <span class="comment">// provided for the Polygon's width and height</span></span><br><span class="line">    <span class="keyword">super</span>(length, length);</span><br><span class="line">    <span class="comment">// Note: In derived classes, super() must be called before you</span></span><br><span class="line">    <span class="comment">// can use 'this'. Leaving this out will cause a reference error.</span></span><br><span class="line">    <span class="keyword">this</span>.name = <span class="string">'Square'</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  get area() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.height * <span class="keyword">this</span>.width;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用extends继续内置对象</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myDate</span> <span class="keyword">extends</span> <span class="title">Date</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">super</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  getFormattedDate() &#123;</span><br><span class="line">    <span class="keyword">var</span> months = [<span class="string">'Jan'</span>,<span class="string">'Feb'</span>,<span class="string">'Mar'</span>,<span class="string">'Apr'</span>,<span class="string">'May'</span>,<span class="string">'Jun'</span>,<span class="string">'Jul'</span>,<span class="string">'Aug'</span>,<span class="string">'Sep'</span>,<span class="string">'Oct'</span>,<span class="string">'Nov'</span>,<span class="string">'Dec'</span>];</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.getDate() + <span class="string">"-"</span> + months[<span class="keyword">this</span>.getMonth()] + <span class="string">"-"</span> + <span class="keyword">this</span>.getFullYear();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2016/12/02/类和原型/捕获.PNG" alt="运行结果"></p>
+<p>扩展null</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">nullExtends</span> <span class="keyword">extends</span> <span class="title">null</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.getPrototypeOf(nullExtends); <span class="comment">// Function.prototype</span></span><br><span class="line"><span class="built_in">Object</span>.getPrototypeOf(nullExtends.prototype) <span class="comment">// null</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> nullExtends(); <span class="comment">//ReferenceError: this is not defined</span></span><br></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -432,8 +465,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -485,6 +527,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#构造函数constructor"><span class="nav-number">1.</span> <span class="nav-text">构造函数constructor</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#extends关键字"><span class="nav-number">2.</span> <span class="nav-text">extends关键字</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
