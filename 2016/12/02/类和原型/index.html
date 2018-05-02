@@ -87,7 +87,8 @@
 <meta property="og:description" content="类 在javascript中，类的所以实例对象都从同一个原型对象上继续属性。因此原型对象是类的核.  构造函数constructor构造函数是用于创建和初始化类中创建的一个对象的一种特殊方法。 12constructor([arguments])&amp;#123;...&amp;#125;; 在一个类中只能有一个名为constructor的特殊方法。一个类中出现多次构造函数方法会抛出一个SyntaxError错">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2016/12/02/类和原型/捕获.PNG">
-<meta property="og:updated_time" content="2018-05-02T09:49:07.012Z">
+<meta property="og:image" content="http://yoursite.com/2016/12/02/类和原型/4.gif">
+<meta property="og:updated_time" content="2018-05-02T13:20:33.925Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="类和原型">
 <meta name="twitter:description" content="类 在javascript中，类的所以实例对象都从同一个原型对象上继续属性。因此原型对象是类的核.  构造函数constructor构造函数是用于创建和初始化类中创建的一个对象的一种特殊方法。 12constructor([arguments])&amp;#123;...&amp;#125;; 在一个类中只能有一个名为constructor的特殊方法。一个类中出现多次构造函数方法会抛出一个SyntaxError错">
@@ -325,7 +326,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,268
+                  1,410
                 </span>
               
 
@@ -395,10 +396,17 @@
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tripple</span> </span>&#123;</span><br><span class="line">	<span class="keyword">static</span> tripple(n) &#123;</span><br><span class="line">		n = n || <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">return</span> n * <span class="number">3</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BiggerTripple</span> <span class="keyword">extends</span> <span class="title">Tripple</span> </span>&#123;</span><br><span class="line">	<span class="keyword">static</span> tripple(n) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">super</span>.tripple(n) * <span class="keyword">super</span>.tripple(n);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(Tripple.tripple()); </span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line"><span class="built_in">console</span>.log(Tripple.tripple(<span class="number">6</span>));</span><br><span class="line"><span class="comment">// 18</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> tp = <span class="keyword">new</span> Tripple();</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(BiggerTripple.tripple(<span class="number">3</span>));   </span><br><span class="line"><span class="comment">// 81（不会受父类实例化的影响）</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(tp.tripple());               </span><br><span class="line"><span class="comment">// 'tp.tripple 不是一个函数'.</span></span><br></pre></td></tr></table></figure>
 <h3 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h3><p>JavaScript 常被描述为一种基于原型的语言 (prototype-based language)——每个对象拥有一个原型对象，对象以其原型为模板、从原型继承方法和属性。原型对象也可能拥有原型，并从中继承方法和属性，一层一层、以此类推。这种关系常被称为原型链 (prototype chain)，它解释了为何一个对象会拥有定义在其他对象中的属性和方法。</p>
+<p><img src="/2016/12/02/类和原型/4.gif" alt="运行结果"></p>
 <p>准确地说，这些属性和方法定义在Object的构造器函数(constructor functions)之上的prototype属性上，而非对象实例本身。</p>
 <p>在传统的OPP中，首先定义“类”，此后创建对象实例时，类中定义的所有属性和方法都被复制到实例中。在 JavaScript 中并不如此复制——而是在对象实例和它的构造器之间建立一个链接（它是<strong>proto</strong>属性，是从构造函数的prototype属性派生的），之后通过上溯原型链，在构造器中找到这些属性和方法。</p>
 <blockquote>
 <p>注意: 理解对象的原型（可以通过Object.getPrototypeOf(obj)或者已被弃用的<strong>proto</strong>属性获得）与构造函数的prototype属性之间的区别是很重要的。前者是每个实例上都有的属性，后者是构造函数的属性。也就是说，Object.getPrototypeOf(new Foobar())和Foobar.prototype指向着同一个对象。</p>
+</blockquote>
+<p> 在javascript中，原型也是一个对象，原型的作用，则是实现对象的继续。在js的所有函数对象中，都存在一个属性prototype，该属性对应当前对象的原型。</p>
+<p> 而所有的JavaScript对象，都存在一个<strong>proto</strong>属性（由于<strong>proto</strong>是个非标准属性,，标准方法是Object.getPrototypeOf()），<strong>proto</strong>属性指向实例对象的构造函数的原型，理解起来就如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> Person();</span><br><span class="line"><span class="built_in">console</span>.log(p.__proto__ === Person.prototype);  <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Object.getPrototypeOf()指向的是实例对象的构造函数的原型。</p>
 </blockquote>
 
       
